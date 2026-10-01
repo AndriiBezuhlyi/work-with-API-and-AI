@@ -345,3 +345,19 @@ code {
     border-top: 1px solid var(--border);
   }
 }
+
+.summary-card {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 520px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+.summary-card p { margin-top: 10px; }
+#rates-status, #currency-totals > p:first-of-type { font-size: 14px; }
+#rates-list { list-style: none; padding: 0; margin-bottom: 0; }
+#rates-list li { padding: 10px 0; border-bottom: 1px solid var(--border); }
+#result { font: 600 32px var(--sans); white-space: pre-wrap; margin: 0; color: var(--text-h); }

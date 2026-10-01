@@ -1,12 +1,9 @@
-export function selectCurrency(transactions) {
-  const counts = { USD: 0, EUR: 0 }
-
-  for (const { currency } of transactions) {
-    if (currency === 'USD' || currency === 'EUR') counts[currency] += 1
+export function calculateCurrencyTotals(transactions) {
+  const totals = { USD: 0, EUR: 0 }
+  for (const { amount, currency } of transactions) {
+    if (currency === 'USD' || currency === 'EUR') totals[currency] += amount
   }
-
-  // За рівної кількості (або відсутності обох валют) обираємо USD.
-  return counts.EUR > counts.USD ? 'EUR' : 'USD'
+  return { USD: Number(totals.USD.toFixed(2)), EUR: Number(totals.EUR.toFixed(2)) }
 }
 
 function getRate(rates, currency) {
@@ -20,14 +17,13 @@ function getRate(rates, currency) {
 }
 
 export function calculateDailyRevenue(transactions, rates) {
-  const currency = selectCurrency(transactions)
+  const currency = 'USD'
   const total = transactions.reduce((sum, transaction) => {
     if (transaction.currency === currency) return sum + transaction.amount
 
-    // Спочатку переводимо суму в USD, потім — в обрану валюту.
+    // Курс показує кількість вихідної валюти за 1 USD, тому ділимо.
     const convertedAmount = transaction.amount
       / getRate(rates, transaction.currency)
-      * getRate(rates, currency)
 
     return sum + convertedAmount
   }, 0)

@@ -52,5 +52,5 @@ export async function getExchangeRates() {
   }
 
   // Базовий курс USD дорівнює 1; решта курсів — кількість валюти за 1 USD.
-  return { ...data.rates, USD: 1 }
+  return { rates: { ...data.rates, USD: 1 }, date: data.date }
 }

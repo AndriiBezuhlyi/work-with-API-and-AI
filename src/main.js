@@ -8,6 +8,12 @@ import { renderExchangeRates } from './exchangeRates.js'
 const app = document.querySelector('#app')
 
 app.innerHTML = `
+  <aside class="rates-panel" aria-labelledby="rates-title">
+    <h2 id="rates-title">Курси валют</h2>
+    <p class="panel-description">Вартість 1 USD у світі</p>
+    <p id="rates-status" role="status"></p>
+    <ul id="rates-list" tabindex="0" aria-label="Список курсів валют"></ul>
+  </aside>
   <main id="center">
     <h1>Сума транзакцій</h1>
     <p id="status" role="status" aria-live="polite"></p>
@@ -19,16 +25,11 @@ app.innerHTML = `
       <p id="eur-total"></p>
     </section>
     <button id="reload" class="counter" type="button">Оновити</button>
-    <section class="summary-card" aria-labelledby="rates-title">
-      <h2 id="rates-title">Курси валют до USD</h2>
-      <p id="rates-status" role="status"></p>
-      <ul id="rates-list"></ul>
-    </section>
   </main>
   <aside class="transactions-panel" aria-labelledby="transactions-title">
     <h2 id="transactions-title">Усі транзакції</h2>
     <p id="transactions-status" role="status"></p>
-    <ul id="transactions-list"></ul>
+    <ul id="transactions-list" tabindex="0" aria-label="Список транзакцій"></ul>
   </aside>
 `
 
